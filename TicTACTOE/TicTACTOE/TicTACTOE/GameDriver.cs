@@ -1,5 +1,6 @@
 ﻿namespace TicTACTOE
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -76,7 +77,7 @@
 
         public void ComputerMoves(List<Button> buttons)
         {
-            buttons.First(x => x.Text == "").Text = "O";
+            buttons.Where(x => x.Text == "").OrderBy(x => Guid.NewGuid()).FirstOrDefault().Text = "O";
         }
 
         public void ResetGame(List<Button> buttons)
