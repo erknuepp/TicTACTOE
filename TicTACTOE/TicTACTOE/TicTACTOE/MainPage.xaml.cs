@@ -12,7 +12,7 @@ namespace TicTACTOE
         public MainPage()
         {
             InitializeComponent();
-
+            gameOverStackLayout.IsVisible = true;
             buttons.Add(button1);
             buttons.Add(button2);
             buttons.Add(button3);
@@ -29,19 +29,22 @@ namespace TicTACTOE
             Button b = (Button)sender;
             if (b.Text == "")
             {
-                game.SetButton(b);
+                game.HumanMoves(b);
             }
             if (game.IsWinner(buttons))
             {
                 gameOverStackLayout.IsVisible = true;
             }
-            else
+
+            game.ComputerMoves(buttons);
+            if (game.IsWinner(buttons))
             {
-                game.ComputerMoves(buttons);
+                gameOverStackLayout.IsVisible = true;
             }
+            
         }
 
-        private void PlayAgain_Clicked(Object sender, EventArgs e)
+        private void PlayAgain_Clicked(object sender, EventArgs e)
         {
             game.ResetGame(buttons);
             gameOverStackLayout.IsVisible = false;

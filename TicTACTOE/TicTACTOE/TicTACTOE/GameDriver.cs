@@ -8,8 +8,6 @@
 
     internal class GameDriver
     {
-        private PlayerType player = PlayerType.Human;
-
         private readonly int[,] Winners = new int[,]
         {
             {0,1,2},
@@ -36,26 +34,26 @@
 
                 if (buttonsToCheck.Any(x => x.Text == ""))
                 {
-                    continue;
-                }                    
+                    continue; //to next loop interation
+                }
 
                 if (buttonsToCheck.Select(x => x.Text).Distinct().Count() == 1)
                 {
                     buttonsToCheck.ForEach(x => x.BackgroundColor = Color.AliceBlue);
                     gameOver = true;
-                    break;
+                    break; //out of for loop
                 }
             }
 
-            bool isTie = true;
             if (!gameOver)
             {
+                bool isTie = true;
                 foreach (Button b in buttons)
                 {
                     if (b.Text == "")
                     {
                         isTie = false;
-                        break;
+                        break; //out of foreach loop
                     }
                 }
                 if (isTie)
@@ -66,13 +64,9 @@
             return gameOver;
         }
 
-        public void SetButton(Button b)
+        public void HumanMoves(Button b)
         {
-            //Get rid of playertype all together and change this logic
             b.Text = "X";
-            player = player == PlayerType.Human ? PlayerType.AI : PlayerType.Human;
-
-            //TODO remove button from list? Make two lists? all_buttons, available_buttons
         }
 
         public void ComputerMoves(List<Button> buttons)
@@ -82,7 +76,6 @@
 
         public void ResetGame(List<Button> buttons)
         {
-            player = PlayerType.Human;
             foreach (Button b in buttons)
             {
                 b.Text = "";
