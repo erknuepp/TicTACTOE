@@ -82,7 +82,7 @@
 
         <StackLayout x:Name="gameOverStackLayout" Grid.Row="0" Grid.Column="1" IsVisible="False">
             <Label Text="Game Over" HorizontalTextAlignment="Center"/>
-            <Button Text="Play again" Clicked="PlayAgain_Clicked"/>
+            <Button Text="PLAY" Clicked="PlayAgain_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>

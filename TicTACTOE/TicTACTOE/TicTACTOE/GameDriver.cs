@@ -1,5 +1,8 @@
 ﻿namespace TicTACTOE
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using Xamarin.Forms;
 
     internal class GameDriver
@@ -18,23 +21,26 @@
             {2,4,6}
         };
 
-        public bool CheckWinner(Button[] buttons)
+        public bool IsWinner(List<Button> buttons)
         {
             bool gameOver = false;
             for (int i = 0; i < 8; i++)
             {
-                Button b1 = buttons[Winners[i, 0]];
-                Button b2 = buttons[Winners[i, 1]];
-                Button b3 = buttons[Winners[i, 2]];
+                List<Button> buttonsToCheck = new List<Button>
+                {
+                    buttons[Winners[i, 0]],
+                    buttons[Winners[i, 1]],
+                    buttons[Winners[i, 2]]
+                };
 
-                if (b1.Text == "" || b2.Text == "" || b3.Text == "")
+                if (buttonsToCheck.Any(x => x.Text == ""))
                 {
                     continue;
                 }                    
 
-                if (b1.Text == b2.Text && b2.Text == b3.Text)
+                if (buttonsToCheck.Select(x => x.Text).Distinct().Count() == 1)
                 {
-                    b1.BackgroundColor = b2.BackgroundColor = b3.BackgroundColor = Color.Aqua;
+                    buttonsToCheck.ForEach(x => x.BackgroundColor = Color.AliceBlue);
                     gameOver = true;
                     break;
                 }
@@ -61,13 +67,19 @@
 
         public void SetButton(Button b)
         {
-            if (b.Text == "")
-            {
-                b.Text = player == PlayerType.Human ? "X" : "O";
-                player = player == PlayerType.Human ? PlayerType.AI : PlayerType.Human;
-            }
+            //Get rid of playertype all together and change this logic
+            b.Text = "X";
+            player = player == PlayerType.Human ? PlayerType.AI : PlayerType.Human;
+
+            //TODO remove button from list? Make two lists? all_buttons, available_buttons
         }
-        public void ResetGame(Button[] buttons)
+
+        public void ComputerMoves(List<Button> buttons)
+        {
+            buttons.First(x => x.Text == "").Text = "O";
+        }
+
+        public void ResetGame(List<Button> buttons)
         {
             player = PlayerType.Human;
             foreach (Button b in buttons)
