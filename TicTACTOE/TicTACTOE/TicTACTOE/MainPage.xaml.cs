@@ -33,19 +33,28 @@ namespace TicTACTOE
             }
             if (game.IsWinner(buttons))
             {
-                gameOverStackLayout.IsVisible = true;
+                ShowGameOver();
+                return;
             }
 
             game.ComputerMoves(buttons);
             if (game.IsWinner(buttons))
             {
-                gameOverStackLayout.IsVisible = true;
+                ShowGameOver();
+                return;
             }
-            
+
+        }
+
+        private void ShowGameOver()
+        {
+            gameOverStackLayout.IsVisible = true;
+            buttons.ForEach(x => x.IsEnabled = false);
         }
 
         private void PlayAgain_Clicked(object sender, EventArgs e)
         {
+            buttons.ForEach(x => x.IsEnabled = true);
             game.ResetGame(buttons);
             gameOverStackLayout.IsVisible = false;
         }

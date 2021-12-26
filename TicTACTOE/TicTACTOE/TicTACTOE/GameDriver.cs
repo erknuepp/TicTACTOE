@@ -23,13 +23,13 @@
         public bool IsWinner(List<Button> buttons)
         {
             bool gameOver = false;
-            for (int i = 0; i < 8; i++)
+            for (int key = 0; key < 8; key++)
             {
                 List<Button> buttonsToCheck = new List<Button>
                 {
-                    buttons[Winners[i, 0]],
-                    buttons[Winners[i, 1]],
-                    buttons[Winners[i, 2]]
+                    buttons[Winners[key, 0]],
+                    buttons[Winners[key, 1]],
+                    buttons[Winners[key, 2]]
                 };
 
                 if (buttonsToCheck.Any(x => x.Text == ""))
@@ -37,6 +37,7 @@
                     continue; //to next loop interation
                 }
 
+                //
                 if (buttonsToCheck.Select(x => x.Text).Distinct().Count() == 1)
                 {
                     buttonsToCheck.ForEach(x => x.BackgroundColor = Color.AliceBlue);
@@ -71,7 +72,16 @@
 
         public void ComputerMoves(List<Button> buttons)
         {
-            buttons.Where(x => x.Text == "").OrderBy(x => Guid.NewGuid()).FirstOrDefault().Text = "O";
+            //TODO after tie, computer still tries to go
+            try
+            {
+                buttons.Where(x => x.Text == "").OrderBy(x => Guid.NewGuid()).First().Text = "O";
+            }
+            catch (Exception e)
+            {
+                //TODO what to do?
+                
+            }
         }
 
         public void ResetGame(List<Button> buttons)
