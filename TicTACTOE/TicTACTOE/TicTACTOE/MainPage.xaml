@@ -37,46 +37,55 @@
         <Button  
             Grid.Row="0"
             Grid.Column="0"
+            AutomationId="1"
             Clicked="Button_Clicked"
             x:Name="button1"/>
         <Button  
             Grid.Row="0"
             Grid.Column="1"
+            AutomationId="2"
             Clicked="Button_Clicked"               
             x:Name="button2"/>
         <Button  
             Grid.Row="0"
             Grid.Column="2"
+            AutomationId="3"
             Clicked="Button_Clicked"               
             x:Name="button3"/>
         <Button  
             Grid.Row="1"
             Grid.Column="0"
+            AutomationId="4"
             Clicked="Button_Clicked"               
             x:Name="button4"/>
         <Button  
             Grid.Row="1"
             Grid.Column="1"
+            AutomationId="5"
             Clicked="Button_Clicked"               
             x:Name="button5"/>
         <Button  
             Grid.Row="1"
             Grid.Column="2"
+            AutomationId="6"
             Clicked="Button_Clicked"               
             x:Name="button6"/>
         <Button  
             Grid.Row="2"
             Grid.Column="0"
+            AutomationId="7"
             Clicked="Button_Clicked"               
             x:Name="button7"/>
         <Button  
             Grid.Row="2"
             Grid.Column="1"
+            AutomationId="8"
             Clicked="Button_Clicked"               
             x:Name="button8"/>
         <Button  
             Grid.Row="2"
             Grid.Column="2"
+            AutomationId="9"
             Clicked="Button_Clicked"  
             x:Name="button9"/>
 

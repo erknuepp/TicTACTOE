@@ -72,15 +72,43 @@
 
         public void ComputerMoves(List<Button> buttons)
         {
-            //TODO after tie, computer still tries to go
+            /*
+            TODO AI
+            Look at all available buttons
+            Look at all available blocks
+            choose best block
+            */
             try
             {
+                var openButtons = buttons.Where(x => x.Text == ""); //.OrderBy(x => Guid.NewGuid()).First().Text = "O";
+                foreach (Button b in openButtons)
+                {
+                    //if the row, column of possible diagonal contains 2 X's, then perform a block
+                    //get the 2 or 3 Winners items and check if any have 2 X's
+                    for (int key = 0; key < 8; key++)
+                    {
+                        List<Button> buttonsToCheck = new List<Button>
+                        {
+                            buttons[Winners[key, 0]],
+                            buttons[Winners[key, 1]],
+                            buttons[Winners[key, 2]]
+                        };
+                        if (buttonsToCheck.Contains(b))
+                        {
+                            if(buttonsToCheck.Where(x => x.Text == "X").Count() == 2)
+                            {
+                                buttonsToCheck.Single(x => x.Text == "").Text = "O";
+                                return;
+                            }
+                        }
+                    }
+                }
                 buttons.Where(x => x.Text == "").OrderBy(x => Guid.NewGuid()).First().Text = "O";
             }
             catch (Exception e)
             {
                 //TODO what to do?
-                
+
             }
         }
 
