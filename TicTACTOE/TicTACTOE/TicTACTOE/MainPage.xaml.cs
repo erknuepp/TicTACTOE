@@ -32,23 +32,28 @@ namespace TicTACTOE
             {
                 game.HumanMoves(b);
             }
+            else
+            {
+                return;
+            }
             if (game.IsWinner(buttons))
             {
-                ShowGameOver();
+                ShowGameOver("Human");
                 return;
             }
             game.ComputerMoves(buttons);
             if (game.IsWinner(buttons))
             {
-                ShowGameOver();
+                ShowGameOver("AI");
                 return;
             }
 
         }
 
-        private void ShowGameOver()
+        private void ShowGameOver(string winner)
         {
             gameOverStackLayout.IsVisible = true;
+            winMessageLabel.Text = $"{winner} wins!";
             buttons.ForEach(x => x.IsEnabled = false);
         }
 
