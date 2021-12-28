@@ -90,7 +90,7 @@
             x:Name="button9"/>
 
         <StackLayout x:Name="gameOverStackLayout" Grid.Row="0" Grid.Column="1" IsVisible="False">
-            <Label Text="Game Over" HorizontalTextAlignment="Center"/>
+            <Label x:Name="winMessageLabel" Text="" HorizontalTextAlignment="Center"/>
             <Button Text="PLAY" Clicked="PlayAgain_Clicked"/>
         </StackLayout>
     </Grid>

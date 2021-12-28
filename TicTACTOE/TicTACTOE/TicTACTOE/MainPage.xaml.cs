@@ -36,24 +36,25 @@ namespace TicTACTOE
             {
                 return;
             }
-            if (game.IsWinner(buttons))
+            var winMessage = game.IsWinner(buttons);
+            if (winMessage != "") //TODO Test win message
             {
-                ShowGameOver("Human");
+                ShowGameOver(winMessage);
                 return;
             }
             game.ComputerMoves(buttons);
-            if (game.IsWinner(buttons))
+            winMessage = game.IsWinner(buttons);
+            if (winMessage != "")
             {
-                ShowGameOver("AI");
+                ShowGameOver(winMessage);
                 return;
             }
-
         }
 
-        private void ShowGameOver(string winner)
+        private void ShowGameOver(string winMessage)
         {
             gameOverStackLayout.IsVisible = true;
-            winMessageLabel.Text = $"{winner} wins!";
+            winMessageLabel.Text = winMessage;
             buttons.ForEach(x => x.IsEnabled = false);
         }
 
