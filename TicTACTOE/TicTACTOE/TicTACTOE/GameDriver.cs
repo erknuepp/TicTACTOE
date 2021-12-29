@@ -54,8 +54,7 @@
                 {
                     //Set color on winning row
                     buttonsToCheck.ForEach(x => x.BackgroundColor = Color.Green);
-                    var openButtonsCount = buttons.Where(x => x.Text == "X").Count();
-
+                    var openButtonsCount = buttons.Where(x => x.Text == "").Count();
                     winMessage = openButtonsCount%2==0?$"Human Wins Round {round}!":$"AI Wins Round {round}!";
                     break; //out of for loop
                 }
@@ -118,6 +117,7 @@
                 }
                 //Otherwise just set a random button
                 buttons.Where(x => x.Text == "").OrderBy(x => Guid.NewGuid()).First().Text = "O";
+                return;
             }
             catch (Exception)
             {

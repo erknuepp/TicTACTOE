@@ -36,12 +36,14 @@ namespace TicTACTOE
             {
                 return;
             }
+
             var winMessage = game.IsWinner(buttons);
             if (winMessage != "") //TODO Test win message
             {
                 ShowGameOver(winMessage);
                 return;
             }
+
             game.ComputerMoves(buttons);
             winMessage = game.IsWinner(buttons);
             if (winMessage != "")
